@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MiAsistenteDeBolsillo.Views.SaludPage"
+             Title="Salud"
+             BackgroundColor="#F0FDFA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label Text="Calculadora de IMC"
+                   FontSize="28" FontAttributes="Bold"
+                   TextColor="#134E4A" HorizontalOptions="Center" />
+            <Label Text="Conoce tu Índice de Masa Corporal"
+                   FontSize="14" TextColor="#0F766E" HorizontalOptions="Center" />
+
+            <!-- Entradas -->
+            <Entry x:Name="txtPeso"
+                   Placeholder="Peso en kilogramos (kg)"
+                   Keyboard="Numeric"
+                   TextColor="#134E4A" PlaceholderColor="#6B7280" />
+            <Entry x:Name="txtAltura"
+                   Placeholder="Altura en metros (ej. 1.70)"
+                   Keyboard="Numeric"
+                   TextColor="#134E4A" PlaceholderColor="#6B7280" />
+
+            <!-- Botones: Calcular y Limpiar (mejora B) -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button x:Name="btnCalcular" Grid.Column="0"
+                        Text="Calcular"
+                        BackgroundColor="#0F766E" TextColor="White"
+                        Clicked="OnCalcularClicked" />
+                <Button x:Name="btnLimpiar" Grid.Column="1"
+                        Text="Limpiar"
+                        BackgroundColor="#CBD5E1" TextColor="#134E4A"
+                        Clicked="OnLimpiarClicked" />
+            </Grid>
+
+            <!-- Tarjeta de resultado: su color cambia según el diagnóstico -->
+            <Border x:Name="brdResultado" IsVisible="False"
+                    Padding="20" StrokeThickness="0"
+                    BackgroundColor="Green">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Tu IMC es" TextColor="White"
+                           HorizontalOptions="Center" />
+                    <Label x:Name="lblImc" FontSize="48" FontAttributes="Bold"
+                           TextColor="White" HorizontalOptions="Center" />
+                    <Label x:Name="lblEstado" FontSize="20"
+                           TextColor="White" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

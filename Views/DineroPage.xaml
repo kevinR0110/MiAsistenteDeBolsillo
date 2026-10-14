@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MiAsistenteDeBolsillo.Views.DineroPage"
+             Title="Dinero"
+             BackgroundColor="#FFFBEB">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label Text="Conversor de monedas"
+                   FontSize="28" FontAttributes="Bold"
+                   TextColor="#78350F" HorizontalOptions="Center" />
+            <Label Text="HNL · USD · EUR"
+                   FontSize="14" TextColor="#B45309" HorizontalOptions="Center" />
+
+            <Entry x:Name="txtMonto"
+                   Placeholder="Monto a convertir"
+                   Keyboard="Numeric"
+                   TextColor="#78350F" PlaceholderColor="#6B7280" />
+
+            <Picker x:Name="pckOrigen"
+                    Title="Moneda de origen"
+                    TextColor="#78350F" TitleColor="#6B7280" />
+
+            <!-- Mejora C: intercambia origen y destino -->
+            <Button x:Name="btnIntercambiar"
+                    Text="⇅ Intercambiar"
+                    BackgroundColor="#FDE68A" TextColor="#78350F"
+                    HorizontalOptions="Center"
+                    Clicked="OnIntercambiarClicked" />
+
+            <Picker x:Name="pckDestino"
+                    Title="Moneda de destino"
+                    TextColor="#78350F" TitleColor="#6B7280" />
+
+            <!-- Botones: Convertir y Limpiar (mejora B) -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button x:Name="btnConvertir" Grid.Column="0"
+                        Text="Convertir"
+                        BackgroundColor="#B45309" TextColor="White"
+                        Clicked="OnConvertirClicked" />
+                <Button x:Name="btnLimpiar" Grid.Column="1"
+                        Text="Limpiar"
+                        BackgroundColor="#CBD5E1" TextColor="#78350F"
+                        Clicked="OnLimpiarClicked" />
+            </Grid>
+
+            <Border x:Name="brdResultado" IsVisible="False"
+                    Padding="20" StrokeThickness="0"
+                    BackgroundColor="#B45309">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="6">
+                    <Label x:Name="lblDetalle" TextColor="White"
+                           HorizontalOptions="Center" />
+                    <Label x:Name="lblResultado" FontSize="40" FontAttributes="Bold"
+                           TextColor="White" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
