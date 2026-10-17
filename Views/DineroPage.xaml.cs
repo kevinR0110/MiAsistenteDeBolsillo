@@ -10,13 +10,22 @@ public partial class DineroPage : ContentPage
     private const double MontoMaximo = 1_000_000_000;
 
     // Lista de monedas que aparece en ambos Picker
+    // Siglas de las monedas: se usan en los cálculos
     private static readonly string[] Monedas = { "HNL", "USD", "EUR" };
+
+    // Texto que ve el usuario en la lista desplegable (mismo orden que Monedas)
+    private static readonly string[] NombresMonedas =
+    {
+        "L  ·  HNL - Lempira hondureño",
+        "$  ·  USD - Dólar estadounidense",
+        "€  ·  EUR - Euro"
+    };
 
     public DineroPage()
     {
         InitializeComponent();
-        pckOrigen.ItemsSource = Monedas;
-        pckDestino.ItemsSource = Monedas;
+        pckOrigen.ItemsSource = NombresMonedas;
+        pckDestino.ItemsSource = NombresMonedas;
     }
 
     // Evento del botón Convertir

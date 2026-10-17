@@ -5,6 +5,27 @@
              Title="Dinero"
              BackgroundColor="#FFFBEB">
 
+    <!-- Estilos reutilizables para las tarjetas de moneda -->
+    <ContentPage.Resources>
+        <Style x:Key="EtiquetaMoneda" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#B45309" />
+        </Style>
+
+        <Style x:Key="TarjetaMoneda" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Stroke" Value="#B45309" />
+            <Setter Property="StrokeThickness" Value="1.5" />
+            <Setter Property="Padding" Value="14,6" />
+            <Setter Property="StrokeShape">
+                <Setter.Value>
+                    <RoundRectangle CornerRadius="14" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
 
@@ -19,20 +40,49 @@
                    Keyboard="Numeric"
                    TextColor="#78350F" PlaceholderColor="#6B7280" />
 
-            <Picker x:Name="pckOrigen"
-                    Title="Moneda de origen"
-                    TextColor="#78350F" TitleColor="#6B7280" />
+            <!-- Texto de ayuda para que el usuario sepa qué hacer -->
+            <Label Text="Toca cada recuadro para ver las monedas disponibles y elegir una."
+                   FontSize="13" TextColor="#92400E" HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
 
-            <!-- Mejora C: intercambia origen y destino -->
+            <!-- Tarjeta: moneda de origen -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="CONVERTIR DE" Style="{StaticResource EtiquetaMoneda}" />
+                <Border Style="{StaticResource TarjetaMoneda}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Picker x:Name="pckOrigen"
+                                Title="Toca para elegir la moneda"
+                                TextColor="#78350F" TitleColor="#6B7280" />
+                        <!-- InputTransparent: el toque pasa al Picker de abajo -->
+                        <Label Grid.Column="1" Text="▼" FontSize="14"
+                               TextColor="#B45309" VerticalOptions="Center"
+                               InputTransparent="True" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Mejora C: botón circular que intercambia origen y destino -->
             <Button x:Name="btnIntercambiar"
-                    Text="⇅ Intercambiar"
+                    Text="⇅" FontSize="22"
+                    WidthRequest="48" HeightRequest="48" CornerRadius="24" Padding="0"
                     BackgroundColor="#FDE68A" TextColor="#78350F"
                     HorizontalOptions="Center"
                     Clicked="OnIntercambiarClicked" />
 
-            <Picker x:Name="pckDestino"
-                    Title="Moneda de destino"
-                    TextColor="#78350F" TitleColor="#6B7280" />
+            <!-- Tarjeta: moneda de destino -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="CONVERTIR A" Style="{StaticResource EtiquetaMoneda}" />
+                <Border Style="{StaticResource TarjetaMoneda}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Picker x:Name="pckDestino"
+                                Title="Toca para elegir la moneda"
+                                TextColor="#78350F" TitleColor="#6B7280" />
+                        <Label Grid.Column="1" Text="▼" FontSize="14"
+                               TextColor="#B45309" VerticalOptions="Center"
+                               InputTransparent="True" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
 
             <!-- Botones: Convertir y Limpiar (mejora B) -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
